@@ -27,6 +27,7 @@ public class movement : MonoBehaviour
     bool prüfer = false;
 
     public GameObject player;
+    
 
     private void Start()
     {
@@ -74,20 +75,27 @@ public class movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-
+        //Platform selber x-Wert
         if (other.gameObject.CompareTag("Platform"))
         {
             this.transform.parent = other.transform;
+           
         }
+
+       
     }
 
     private void OnCollisionExit2D(Collision2D other)
-    {      
-
+    {
+        
         if (other.gameObject.CompareTag("Platform"))
         {
             this.transform.parent = null;
+          
         }
     }
+
+   
+
 
 }
