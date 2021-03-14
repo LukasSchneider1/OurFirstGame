@@ -6,13 +6,13 @@ using System.Collections.Generic;
 [RequireComponent(typeof(AudioSource))]
 public class movement : MonoBehaviour
 {
-  
+
     // Start is called before the first frame update
 
     //Geschwindigkeit
 
     // Start is called before the first frame update
-    
+
     //Sprung
     private float JumpForce = 15;
     private Rigidbody2D _rigidbody;
@@ -22,28 +22,29 @@ public class movement : MonoBehaviour
     private float timeToDecrease = 0.3f;
 
     public Animator animator;
-    private AudioSource footstep;
-    private AudioSource jumpsound;
+    public AudioSource footstep;
+    public AudioSource jumpsound;
+    bool prüfer = false;
 
     private void Start()
     {
-
         _rigidbody = GetComponent<Rigidbody2D>();
-        footstep = GetComponent<AudioSource>();
-        jumpsound = GetComponent<AudioSource>();
+
     }
 
-   private void Update()
+    private void Update()
     {
-        
+
         if (Input.GetButtonDown("Jump") && Mathf.Abs(_rigidbody.velocity.y) < 0.001f)
         {
-            _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
-
-            animator.SetBool("IsJumping", true);
             
+            _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);  
+            animator.SetBool("IsJumping", true);
+            jumpsound.Play();
+
+
         }
-        else if(Mathf.Abs(_rigidbody.velocity.y) < 0.001f)
+        else if (Mathf.Abs(_rigidbody.velocity.y) < 0.001f)
         {
             animator.SetBool("IsJumping", false);
         }
@@ -52,7 +53,7 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        var speed = 30; 
+        var speed = 30;
         var movement = Input.GetAxisRaw("Horizontal") * speed;
 
         //transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * speed;
@@ -64,14 +65,10 @@ public class movement : MonoBehaviour
 
     private void Footstep()
     {
-       
-            footstep.Play();
-        
-    }
-    private void Jumpsound()
-    {
 
-        jumpsound.Play();
+        footstep.Play();
 
     }
+   
+   
 }
