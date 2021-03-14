@@ -19999,7 +19999,6 @@ GameObject:
   - component: {fileID: 1951136953}
   - component: {fileID: 1951136951}
   - component: {fileID: 1951136950}
-  - component: {fileID: 1951136952}
   - component: {fileID: 1951136954}
   m_Layer: 0
   m_Name: crab-walk-1
@@ -20016,7 +20015,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951136948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.55, y: 10.11, z: 1.230664}
+  m_LocalPosition: {x: 24.64, y: 9.97, z: 1.230664}
   m_LocalScale: {x: 5.0000014, y: 6.7488747, z: 1}
   m_Children: []
   m_Father: {fileID: 1421709473}
@@ -20058,52 +20057,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!68 &1951136952
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951136948}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: fbbeeef3462c5944fb8644cf7fd0c0a0, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.093393505, y: -0.14205067}
-  - {x: 0.07118398, y: -0.06327108}
-  - {x: 0.03223555, y: -0.0641128}
-  - {x: 0.024972465, y: -0.12809715}
-  - {x: -0.008113922, y: -0.15970887}
-  - {x: -0.049455214, y: -0.13482773}
-  - {x: -0.052458238, y: -0.09306524}
-  - {x: -0.07903808, y: -0.10492316}
-  - {x: -0.09661925, y: -0.13584757}
-  - {x: -0.13049023, y: -0.10291645}
-  - {x: -0.12286571, y: -0.05368557}
-  - {x: -0.10908283, y: -0.037038628}
-  - {x: -0.05970873, y: -0.041620564}
-  - {x: -0.07515693, y: -0.00965994}
-  - {x: -0.07429823, y: 0.041349374}
-  - {x: -0.061540555, y: 0.08346231}
-  - {x: 0.010209303, y: 0.116572686}
-  - {x: 0.05050412, y: 0.098969676}
-  - {x: 0.099302106, y: 0.07841823}
-  - {x: 0.09802055, y: 0.033126056}
-  - {x: 0.1094058, y: -0.017884808}
-  - {x: 0.084548384, y: -0.033178926}
-  - {x: 0.08974275, y: -0.054509185}
-  - {x: 0.12686814, y: -0.05990527}
-  - {x: 0.14404848, y: -0.084228575}
-  - {x: 0.15237026, y: -0.13280433}
-  - {x: 0.1403775, y: -0.15350443}
-  - {x: 0.10838623, y: -0.103010975}
-  - {x: 0.10324283, y: -0.13413596}
+  m_Constraints: 4
 --- !u!212 &1951136953
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20152,7 +20106,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!61 &1951136954
 BoxCollider2D:
@@ -20167,7 +20121,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012877367, y: -0.025050625}
+  m_Offset: {x: 0.015894048, y: -0.021324635}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -20178,7 +20132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17738222, y: 0.25558457}
+  m_Size: {x: 0.17939334, y: 0.24813259}
   m_EdgeRadius: 0
 --- !u!1 &1986655104
 GameObject:
