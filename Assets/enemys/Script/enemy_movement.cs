@@ -13,28 +13,38 @@ public class enemy_movement : MonoBehaviour
     void Start()
     {
         nextPos = startPos.position;
+        print("hks");
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 enemyScale = transform.localScale;
         if (transform.position == pos1.position)
         {
             nextPos = pos2.position;
-            print(transform.position);
+            enemyScale.x = -5;
         }
-        else if (transform.position == pos2.position)
+        if (transform.position == pos2.position)
         {
             nextPos = pos1.position;
+            enemyScale.x = 5;
         }
 
         transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
+        transform.localScale = enemyScale;
     }
 
     private void OndrawGizmos()
     {
         Gizmos.DrawLine(pos1.position, pos2.position);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            print("sjflsjf");
+        }
+    }
 }
-
-
