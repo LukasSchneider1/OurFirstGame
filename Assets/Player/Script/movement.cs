@@ -27,7 +27,7 @@ public class movement : MonoBehaviour
     bool prüfer = false;
 
     public GameObject player;
-    
+
 
     private void Start()
     {
@@ -40,8 +40,8 @@ public class movement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && Mathf.Abs(_rigidbody.velocity.y) < 0.001f)
         {
-            
-            _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);  
+
+            _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
             animator.SetBool("IsJumping", true);
             jumpsound.Play();
 
@@ -79,23 +79,23 @@ public class movement : MonoBehaviour
         if (other.gameObject.CompareTag("Platform"))
         {
             this.transform.parent = other.transform;
-           
+
         }
 
-       
+
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        
+
         if (other.gameObject.CompareTag("Platform"))
         {
             this.transform.parent = null;
-          
+
         }
     }
 
-   
+
 
 
 }

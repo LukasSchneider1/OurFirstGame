@@ -13,7 +13,7 @@ public class enemy_movement : MonoBehaviour
     void Start()
     {
         nextPos = startPos.position;
-
+        print("hks");
     }
 
     // Update is called once per frame
