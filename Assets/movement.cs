@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 [RequireComponent(typeof(AudioSource))]
-public class movement1 : MonoBehaviour
+public class movement : MonoBehaviour
 {
   
     // Start is called before the first frame update
@@ -74,6 +74,4 @@ public class movement1 : MonoBehaviour
         jumpsound.Play();
 
     }
-
-    
 }
