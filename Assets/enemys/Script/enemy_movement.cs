@@ -21,8 +21,9 @@ public class enemy_movement : MonoBehaviour
         if (transform.position == pos1.position)
         {
             nextPos = pos2.position;
+            print(transform.position);
         }
-        if (transform.position == pos2.position)
+        else if (transform.position == pos2.position)
         {
             nextPos = pos1.position;
         }
