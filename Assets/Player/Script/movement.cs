@@ -26,6 +26,8 @@ public class movement : MonoBehaviour
     public AudioSource jumpsound;
     bool prüfer = false;
 
+    public GameObject player;
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -69,6 +71,23 @@ public class movement : MonoBehaviour
         footstep.Play();
 
     }
-   
-   
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            this.transform.parent = other.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {      
+
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            this.transform.parent = null;
+        }
+    }
+
 }
