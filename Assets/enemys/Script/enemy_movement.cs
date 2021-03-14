@@ -13,7 +13,7 @@ public class enemy_movement : MonoBehaviour
     void Start()
     {
         nextPos = startPos.position;
-        print("hks");
+        
     }
 
     // Update is called once per frame
@@ -40,11 +40,17 @@ public class enemy_movement : MonoBehaviour
         Gizmos.DrawLine(pos1.position, pos2.position);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+       
+
+        if (other.gameObject.CompareTag("Player"))
         {
-            print("sjflsjf");
+
+            this.gameObject.SetActive(false);
+
+
         }
+
     }
 }

@@ -27,12 +27,14 @@ public class movement : MonoBehaviour
     bool prüfer = false;
 
     public GameObject player;
+    private GameObject enemy;
+
 
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-
+        
     }
 
     private void Update()
@@ -79,10 +81,18 @@ public class movement : MonoBehaviour
         if (other.gameObject.CompareTag("Platform"))
         {
             this.transform.parent = other.transform;
-
+            
         }
 
+       
+        if (other.gameObject.CompareTag("Enemy"))
+        {
 
+            GameObject.FindGameObjectWithTag("Enemy").SetActive(false);
+
+
+        }
+        
     }
 
     private void OnCollisionExit2D(Collision2D other)
