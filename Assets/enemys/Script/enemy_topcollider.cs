@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform : MonoBehaviour
+public class enemy_topcollider : MonoBehaviour
 {
     public Transform pos1, pos2;
     public float speed;
     public Transform startPos;
+   
 
     Vector3 nextPos;
     // Start is called before the first frame update
     void Start()
     {
         nextPos = startPos.position;
-        
+
     }
 
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class Platform : MonoBehaviour
         {
             nextPos = pos1.position;
         }
-      
+
 
         transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
     }
@@ -37,4 +38,8 @@ public class Platform : MonoBehaviour
     {
         Gizmos.DrawLine(pos1.position, pos2.position);
     }
+
+  
+
+
 }

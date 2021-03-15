@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Platform
   - Enemy
+  - Enemy1
+  - Enemy_schaden
+  - Enemy_schaden1
+  - Herz1
+  - Herz2
+  - Herz3
   layers:
   - Default
   - TransparentFX
