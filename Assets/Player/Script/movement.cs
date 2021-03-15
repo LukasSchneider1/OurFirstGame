@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(AudioSource))]
@@ -22,8 +23,9 @@ public class movement : MonoBehaviour
     public Animator animator;
     public AudioSource footstep;
     public AudioSource jumpsound;
+   
 
-    private int herz = 3;
+    private int herz =3;
 
     private void Start()
     {
@@ -33,24 +35,17 @@ public class movement : MonoBehaviour
 
     private void Update()
     {
-
+       
         if (Input.GetButtonDown("Jump") && Mathf.Abs(_rigidbody.velocity.y) < 0.001f)
         {
-
             _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
-
             animator.SetBool("IsJumping", true);
             jumpsound.Play();
-
-
         }
         else if (Mathf.Abs(_rigidbody.velocity.y) < 0.001f)
         {
             animator.SetBool("IsJumping", false);
         }
-
-        
-
 
     }
     // Update is called once per frame
@@ -87,16 +82,32 @@ public class movement : MonoBehaviour
         {
 
             GameObject.FindGameObjectWithTag("Enemy").SetActive(false);
-            
 
         }
         //Player bekommt vom ersten Gegner schaden
         if (other.gameObject.CompareTag("Enemy_schaden"))
         {
 
-            GameObject.FindGameObjectWithTag("Player").SetActive(false);
-            herz = herz - 1;
-
+            if(herz > 0)
+            {
+                for(int i = herz; herz > 0; i--)
+                {
+                    GameObject.FindGameObjectWithTag("Herz"+i).SetActive(false);
+                    return;
+                  
+                }
+               
+                herz = herz - 1;
+                
+                
+            }
+            else if(herz == 0)
+            {
+                print("verloren");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            
+            
         }
 
         //Enemy1 wird augeschaltet
@@ -113,6 +124,20 @@ public class movement : MonoBehaviour
 
             GameObject.FindGameObjectWithTag("Player").SetActive(false);
             herz = herz - 1;
+
+            if (herz >= 0)
+            {
+                for (int i = herz + 1; herz > 0; i--)
+                {
+                    GameObject.FindGameObjectWithTag("Herz" + i).SetActive(false);
+                    return;
+                }
+            }
+            else
+            {
+                print("verloren");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
 
         }
 
