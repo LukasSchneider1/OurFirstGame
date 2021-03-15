@@ -40,17 +40,5 @@ public class enemy_movement : MonoBehaviour
         Gizmos.DrawLine(pos1.position, pos2.position);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-       
-
-        if (other.gameObject.CompareTag("Player"))
-        {
-
-            this.gameObject.SetActive(false);
-
-
-        }
-
-    }
+   
 }

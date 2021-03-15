@@ -18,18 +18,12 @@ public class movement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     public CharacterController2D controller;
 
-    private float startingPitch = 1.5f;
-    private float timeToDecrease = 0.3f;
 
     public Animator animator;
     public AudioSource footstep;
     public AudioSource jumpsound;
-    bool prüfer = false;
 
-    public GameObject player;
-    private GameObject enemy;
-
-
+    private int herz = 3;
 
     private void Start()
     {
@@ -44,6 +38,7 @@ public class movement : MonoBehaviour
         {
 
             _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
+
             animator.SetBool("IsJumping", true);
             jumpsound.Play();
 
@@ -53,6 +48,9 @@ public class movement : MonoBehaviour
         {
             animator.SetBool("IsJumping", false);
         }
+
+        
+
 
     }
     // Update is called once per frame
@@ -84,15 +82,42 @@ public class movement : MonoBehaviour
             
         }
 
-       
+        //Enemy wird augeschaltet
         if (other.gameObject.CompareTag("Enemy"))
         {
 
             GameObject.FindGameObjectWithTag("Enemy").SetActive(false);
+            
+
+        }
+        //Player bekommt vom ersten Gegner schaden
+        if (other.gameObject.CompareTag("Enemy_schaden"))
+        {
+
+            GameObject.FindGameObjectWithTag("Player").SetActive(false);
+            herz = herz - 1;
+
+        }
+
+        //Enemy1 wird augeschaltet
+        if (other.gameObject.CompareTag("Enemy1"))
+        {
+
+            GameObject.FindGameObjectWithTag("Enemy1").SetActive(false);
 
 
         }
-        
+        //Player bekommt vom ersten Gegner1 schaden
+        if (other.gameObject.CompareTag("Enemy_schaden1"))
+        {
+
+            GameObject.FindGameObjectWithTag("Player").SetActive(false);
+            herz = herz - 1;
+
+        }
+
+
+
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -105,6 +130,11 @@ public class movement : MonoBehaviour
         }
     }
 
+   
+
+
+
+   
 
 
 
