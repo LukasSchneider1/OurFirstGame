@@ -19,54 +19,78 @@ public class movement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     public CharacterController2D controller;
 
+    public float runSpeed = 40f;
+    float horizontalMove = 0f;
+    bool jump = false;
 
     public Animator animator;
     public AudioSource footstep;
     public AudioSource jumpsound;
-   
 
-    private int herz =3;
+    private static int herz;
+    private static int zähler;
+    Cmovement My_Cmovement = new Cmovement(herz,zähler);
+
 
     private void Start()
     {
+        
         _rigidbody = GetComponent<Rigidbody2D>();
         
+
+        for (int i = herz ; herz > 0; i--)
+        {
+            GameObject.FindGameObjectWithTag("Herz" + i).SetActive(false);
+            //GameObject.FindGameObjectWithTag("Herz" + (My_Cmovement.iherz-My_Cmovement.izähler)).SetActive(false);
+            break;
+        }
+        if (herz == 2)
+        {
+            GameObject.FindGameObjectWithTag("Herz3").SetActive(false);
+        }
+
     }
 
     private void Update()
     {
-       
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(_rigidbody.velocity.y) < 0.001f)
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
+        if (Input.GetButtonDown("Jump"))
         {
-            _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
             animator.SetBool("IsJumping", true);
-            jumpsound.Play();
-        }
-        else if (Mathf.Abs(_rigidbody.velocity.y) < 0.001f)
-        {
-            animator.SetBool("IsJumping", false);
+            jump = true;
+
+            
+            
         }
 
+    }
+
+    public void OnLanding()
+    {
+        animator.SetBool("IsJumping", false);
     }
     // Update is called once per frame
     private void FixedUpdate()
     {
-        var speed = 30;
-        var movement = Input.GetAxisRaw("Horizontal") * speed;
-
-        //transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * speed;
-        animator.SetFloat("Speed", Mathf.Abs(movement));
-        controller.Move(movement * Time.fixedDeltaTime, false, false);
-        // _rigidbody.AddTorque(rotation * rotationSpeed * Time.fixedDeltaTime);
+        
+       controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+       jump = false;
+    
 
     }
 
     private void Footstep()
     {
-
         footstep.Play();
-
     }
+    private void Jump()
+    {
+        jumpsound.Play();
+    }
+
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -74,7 +98,6 @@ public class movement : MonoBehaviour
         if (other.gameObject.CompareTag("Platform"))
         {
             this.transform.parent = other.transform;
-            
         }
 
         //Enemy wird augeschaltet
@@ -87,27 +110,30 @@ public class movement : MonoBehaviour
         //Player bekommt vom ersten Gegner schaden
         if (other.gameObject.CompareTag("Enemy_schaden"))
         {
-
+            herz = 4;
+           
             if(herz > 0)
             {
-                for(int i = herz; herz > 0; i--)
-                {
-                    GameObject.FindGameObjectWithTag("Herz"+i).SetActive(false);
-                    return;
-                  
-                }
-               
-                herz = herz - 1;
                 
-                
-            }
-            else if(herz == 0)
-            {
-                print("verloren");
+                zähler = zähler + 1;
+                herz = herz - zähler;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Cmovement My_Cmovement = new Cmovement(herz,zähler);
+ 
             }
-            
-            
+            if (herz == 1)
+            {
+
+                herz = 4;
+                zähler = 0;
+                Cmovement My_Cmovement = new Cmovement(herz, zähler);
+               
+
+            }
+
+
+
+
         }
 
         //Enemy1 wird augeschaltet
@@ -122,21 +148,26 @@ public class movement : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy_schaden1"))
         {
 
-            GameObject.FindGameObjectWithTag("Player").SetActive(false);
-            herz = herz - 1;
 
-            if (herz >= 0)
+            herz = 4;
+
+            if (herz > 0)
             {
-                for (int i = herz + 1; herz > 0; i--)
-                {
-                    GameObject.FindGameObjectWithTag("Herz" + i).SetActive(false);
-                    return;
-                }
-            }
-            else
-            {
-                print("verloren");
+
+                zähler = zähler + 1;
+                herz = herz - zähler;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Cmovement My_Cmovement = new Cmovement(herz, zähler);
+
+            }
+            if (herz == 1)
+            {
+
+                herz = 4;
+                zähler = 0;
+                Cmovement My_Cmovement = new Cmovement(herz, zähler);
+
+
             }
 
         }
@@ -159,8 +190,32 @@ public class movement : MonoBehaviour
 
 
 
+}
+[SerializeField()]
+public class Cmovement
+{
+    private int _herz;
+
+    public int iherz
+    {
+        get { return _herz; }
+        set { _herz = value; }
+    }
+
+    private int _zähler;
+
+    public int izähler
+    {
+        get { return _zähler; }
+        set { _zähler = value; }
+    }
+
+
+    public Cmovement(int herzk, int zählerk)
+    {
+        _herz = herzk;
+        _zähler = zählerk;
+    }
+
    
-
-
-
 }
