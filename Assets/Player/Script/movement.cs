@@ -121,17 +121,7 @@ public class movement : MonoBehaviour
                 Cmovement My_Cmovement = new Cmovement(herz,zähler);
  
             }
-            if (herz == 1)
-            {
-
-                herz = 4;
-                zähler = 0;
-                Cmovement My_Cmovement = new Cmovement(herz, zähler);
-               
-
-            }
-
-
+            
 
 
         }
@@ -153,22 +143,22 @@ public class movement : MonoBehaviour
 
             if (herz > 0)
             {
-
                 zähler = zähler + 1;
                 herz = herz - zähler;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 Cmovement My_Cmovement = new Cmovement(herz, zähler);
-
             }
-            if (herz == 1)
-            {
 
-                herz = 4;
-                zähler = 0;
-                Cmovement My_Cmovement = new Cmovement(herz, zähler);
+        }
 
+        if (herz == 1)
+        {
+            Application.LoadLevel("Menü");
+          
+            herz = 4;
+            zähler = 0;
+            Cmovement My_Cmovement = new Cmovement(herz, zähler);
 
-            }
 
         }
 
