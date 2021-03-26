@@ -31,6 +31,8 @@ public class movement : MonoBehaviour
     private static int zähler;
     Cmovement My_Cmovement = new Cmovement(herz,zähler);
 
+    public int diamantValue = 1;
+
 
     private void Start()
     {
@@ -150,7 +152,7 @@ public class movement : MonoBehaviour
             }
 
         }
-
+        //Abfrage ob er noch ein leben hat
         if (herz == 1)
         {
             Application.LoadLevel("Menü");
@@ -161,6 +163,40 @@ public class movement : MonoBehaviour
 
 
         }
+
+        //Diamant
+        if (other.gameObject.CompareTag("Diamant"))
+        {
+
+            GameObject.FindGameObjectWithTag("Diamant").SetActive(false);
+            ScoreManager.instance.ChangeScore(diamantValue);
+
+        }
+
+        if (other.gameObject.CompareTag("Diamant2"))
+        {
+
+            GameObject.FindGameObjectWithTag("Diamant2").SetActive(false);
+            ScoreManager.instance.ChangeScore(diamantValue);
+
+        }
+
+        if (other.gameObject.CompareTag("Diamant3"))
+        {
+
+            GameObject.FindGameObjectWithTag("Diamant3").SetActive(false);
+            ScoreManager.instance.ChangeScore(diamantValue);
+
+        }
+
+        if (other.gameObject.CompareTag("Diamant4"))
+        {
+
+            GameObject.FindGameObjectWithTag("Diamant4").SetActive(false);
+            ScoreManager.instance.ChangeScore(diamantValue);
+
+        }
+
 
 
 
