@@ -12,6 +12,11 @@ TagManager:
   - Herz1
   - Herz2
   - Herz3
+  - Diamant
+  - Diamant2
+  - Diamant3
+  - Diamant4
+  - Falldown
   layers:
   - Default
   - TransparentFX

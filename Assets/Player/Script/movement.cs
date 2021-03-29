@@ -152,6 +152,18 @@ public class movement : MonoBehaviour
             }
 
         }
+        if (other.gameObject.CompareTag("Falldown"))
+        {
+            herz = 4;
+            if (herz > 0)
+            {
+                zähler = zähler + 1;
+                herz = herz - zähler;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Cmovement My_Cmovement = new Cmovement(herz, zähler);
+            }
+
+        }
         //Abfrage ob er noch ein leben hat
         if (herz == 1)
         {
@@ -164,6 +176,7 @@ public class movement : MonoBehaviour
 
         }
 
+       
         //Diamant
         if (other.gameObject.CompareTag("Diamant"))
         {
