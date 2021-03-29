@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-
+//github
 [RequireComponent(typeof(AudioSource))]
 public class movement : MonoBehaviour
 {
@@ -29,16 +29,18 @@ public class movement : MonoBehaviour
 
     private static int herz;
     private static int zähler;
-    Cmovement My_Cmovement = new Cmovement(herz,zähler);
+    Cmovement My_Cmovement = new Cmovement(herz, zähler);
+
+    public int diamantValue = 1;
 
 
     private void Start()
     {
-        
-        _rigidbody = GetComponent<Rigidbody2D>();
-        
 
-        for (int i = herz ; herz > 0; i--)
+        _rigidbody = GetComponent<Rigidbody2D>();
+
+
+        for (int i = herz; herz > 0; i--)
         {
             GameObject.FindGameObjectWithTag("Herz" + i).SetActive(false);
             //GameObject.FindGameObjectWithTag("Herz" + (My_Cmovement.iherz-My_Cmovement.izähler)).SetActive(false);
@@ -61,8 +63,8 @@ public class movement : MonoBehaviour
             animator.SetBool("IsJumping", true);
             jump = true;
 
-            
-            
+
+
         }
 
     }
@@ -74,10 +76,10 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        
-       controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
-       jump = false;
-    
+
+        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+        jump = false;
+
 
     }
 
@@ -111,26 +113,16 @@ public class movement : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy_schaden"))
         {
             herz = 4;
-           
-            if(herz > 0)
+
+            if (herz > 0)
             {
-                
+
                 zähler = zähler + 1;
                 herz = herz - zähler;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                Cmovement My_Cmovement = new Cmovement(herz,zähler);
- 
-            }
-            if (herz == 1)
-            {
-
-                herz = 4;
-                zähler = 0;
                 Cmovement My_Cmovement = new Cmovement(herz, zähler);
-               
 
             }
-
 
 
 
@@ -153,24 +145,58 @@ public class movement : MonoBehaviour
 
             if (herz > 0)
             {
-
                 zähler = zähler + 1;
                 herz = herz - zähler;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 Cmovement My_Cmovement = new Cmovement(herz, zähler);
-
-            }
-            if (herz == 1)
-            {
-
-                herz = 4;
-                zähler = 0;
-                Cmovement My_Cmovement = new Cmovement(herz, zähler);
-
-
             }
 
         }
+        //Abfrage ob er noch ein leben hat
+        if (herz == 1)
+        {
+            Application.LoadLevel("Menü");
+
+            herz = 4;
+            zähler = 0;
+            Cmovement My_Cmovement = new Cmovement(herz, zähler);
+
+
+        }
+
+        //Diamant
+        if (other.gameObject.CompareTag("Diamant"))
+        {
+
+            GameObject.FindGameObjectWithTag("Diamant").SetActive(false);
+            ScoreManager.instance.ChangeScore(diamantValue);
+
+        }
+
+        if (other.gameObject.CompareTag("Diamant2"))
+        {
+
+            GameObject.FindGameObjectWithTag("Diamant2").SetActive(false);
+            ScoreManager.instance.ChangeScore(diamantValue);
+
+        }
+
+        if (other.gameObject.CompareTag("Diamant3"))
+        {
+
+            GameObject.FindGameObjectWithTag("Diamant3").SetActive(false);
+            ScoreManager.instance.ChangeScore(diamantValue);
+
+        }
+
+        if (other.gameObject.CompareTag("Diamant4"))
+        {
+
+            GameObject.FindGameObjectWithTag("Diamant4").SetActive(false);
+            ScoreManager.instance.ChangeScore(diamantValue);
+
+        }
+
 
 
 
@@ -186,7 +212,7 @@ public class movement : MonoBehaviour
         }
     }
 
-   
+
 
 
 
@@ -217,5 +243,5 @@ public class Cmovement
         _zähler = zählerk;
     }
 
-   
+
 }
