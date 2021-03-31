@@ -164,6 +164,26 @@ public class movement : MonoBehaviour
             }
 
         }
+
+        //Spiken1-2
+        if (other.gameObject.CompareTag("Spike1") || other.gameObject.CompareTag("Spike2") || other.gameObject.CompareTag("Spike3") || other.gameObject.CompareTag("Spike4") || other.gameObject.CompareTag("Spike5"))
+        {
+            herz = 4;
+
+            if (herz > 0)
+            {
+
+                zähler = zähler + 1;
+                herz = herz - zähler;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Cmovement My_Cmovement = new Cmovement(herz, zähler);
+
+            }
+
+
+
+        }
+      
         //Abfrage ob er noch ein leben hat
         if (herz == 1)
         {
