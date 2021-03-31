@@ -12,6 +12,16 @@ TagManager:
   - Herz1
   - Herz2
   - Herz3
+  - Diamant
+  - Diamant2
+  - Diamant3
+  - Diamant4
+  - Falldown
+  - Spike1
+  - Spike2
+  - Spike3
+  - Spike4
+  - Spike5
   layers:
   - Default
   - TransparentFX
