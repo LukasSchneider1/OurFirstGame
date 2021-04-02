@@ -34,7 +34,7 @@ public class enemy_movement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
         transform.localScale = enemyScale;
     }
-
+    
     private void OndrawGizmos()
     {
         Gizmos.DrawLine(pos1.position, pos2.position);
