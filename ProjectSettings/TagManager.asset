@@ -22,6 +22,12 @@ TagManager:
   - Spike3
   - Spike4
   - Spike5
+  - Bullet
+  - BulletLeft
+  - Pos1
+  - Pos2
+  - door
+  - moreDiamants
   layers:
   - Default
   - TransparentFX

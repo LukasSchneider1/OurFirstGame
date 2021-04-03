@@ -7,24 +7,27 @@ public class enemy_movement : MonoBehaviour
     public Transform pos1, pos2;
     public float speed;
     public Transform startPos;
+    
 
     Vector3 nextPos;
     // Start is called before the first frame update
     void Start()
     {
         nextPos = startPos.position;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 enemyScale = transform.localScale;
+        //läuft nach rechts
         if (transform.position == pos1.position)
         {
             nextPos = pos2.position;
             enemyScale.x = -5;
         }
+        //läuft nach links
         if (transform.position == pos2.position)
         {
             nextPos = pos1.position;
@@ -34,11 +37,11 @@ public class enemy_movement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
         transform.localScale = enemyScale;
     }
-    
+
     private void OndrawGizmos()
     {
         Gizmos.DrawLine(pos1.position, pos2.position);
     }
 
-   
+    
 }

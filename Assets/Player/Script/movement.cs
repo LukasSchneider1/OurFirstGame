@@ -15,7 +15,7 @@ public class movement : MonoBehaviour
     // Start is called before the first frame update
 
     //Sprung
-    private float JumpForce = 15;
+    
     private Rigidbody2D _rigidbody;
     public CharacterController2D controller;
 
@@ -38,7 +38,7 @@ public class movement : MonoBehaviour
     {
 
         _rigidbody = GetComponent<Rigidbody2D>();
-
+        //GameObject.FindGameObjectWithTag("moreDiamants").SetActive(false);
 
         for (int i = herz; herz > 0; i--)
         {
@@ -107,7 +107,8 @@ public class movement : MonoBehaviour
         {
 
             GameObject.FindGameObjectWithTag("Enemy").SetActive(false);
-
+            Destroy(GameObject.FindGameObjectWithTag("Bullet"));
+            Destroy(GameObject.FindGameObjectWithTag("BulletLeft"));
         }
         //Player bekommt vom ersten Gegner schaden
         if (other.gameObject.CompareTag("Enemy_schaden"))
@@ -133,7 +134,9 @@ public class movement : MonoBehaviour
         {
 
             GameObject.FindGameObjectWithTag("Enemy1").SetActive(false);
-
+            Destroy(GameObject.FindGameObjectWithTag("Bullet"));
+            Destroy(GameObject.FindGameObjectWithTag("BulletLeft"));
+            
 
         }
         //Player bekommt vom ersten Gegner1 schaden
@@ -165,6 +168,24 @@ public class movement : MonoBehaviour
 
         }
 
+        //Prüfen ob die Bullets den Player treffen
+        if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("BulletLeft"))
+        {
+            herz = 4;
+
+            if (herz > 0)
+            {
+
+                zähler = zähler + 1;
+                herz = herz - zähler;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Cmovement My_Cmovement = new Cmovement(herz, zähler);
+
+            }
+
+
+
+        }
         //Spiken1-2
         if (other.gameObject.CompareTag("Spike1") || other.gameObject.CompareTag("Spike2") || other.gameObject.CompareTag("Spike3") || other.gameObject.CompareTag("Spike4") || other.gameObject.CompareTag("Spike5"))
         {
@@ -196,7 +217,14 @@ public class movement : MonoBehaviour
 
         }
 
-       
+        if (other.gameObject.CompareTag("door"))
+        {
+
+            GameObject.FindGameObjectWithTag("moreDiamants").SetActive(true);
+            print("zuwenig");
+
+        }
+
         //Diamant
         if (other.gameObject.CompareTag("Diamant"))
         {
