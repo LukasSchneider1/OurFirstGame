@@ -27,16 +27,18 @@ public class movement : MonoBehaviour
     public AudioSource footstep;
     public AudioSource jumpsound;
 
-    private static int herz;
+    private static int herz = 4;
     private static int zähler;
     Cmovement My_Cmovement = new Cmovement(herz, zähler);
 
-    public int diamantValue = 1;
+    public int diamantValue = 0;
 
+    public GameObject canvasObject;
+    public GameObject canvasObject1;
 
     private void Start()
     {
-
+        makeDisable1();
         _rigidbody = GetComponent<Rigidbody2D>();
         //GameObject.FindGameObjectWithTag("moreDiamants").SetActive(false);
 
@@ -67,6 +69,10 @@ public class movement : MonoBehaviour
 
         }
 
+        if (Input.anyKey || herz < 4)
+        {
+            makeDisable();
+        }
     }
 
     public void OnLanding()
@@ -91,7 +97,21 @@ public class movement : MonoBehaviour
     {
         jumpsound.Play();
     }
+    public void makeDisable1()
+    {
+        canvasObject1.SetActive(false);
+    }
 
+    public void makeDisable()
+    {
+        canvasObject.SetActive(false);
+
+    }
+
+    public void makeEnable1()
+    {
+        canvasObject1.SetActive(true);
+    }
 
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -231,7 +251,7 @@ public class movement : MonoBehaviour
 
             GameObject.FindGameObjectWithTag("Diamant").SetActive(false);
             ScoreManager.instance.ChangeScore(diamantValue);
-
+            diamantValue++;
         }
 
         if (other.gameObject.CompareTag("Diamant2"))
@@ -239,7 +259,7 @@ public class movement : MonoBehaviour
 
             GameObject.FindGameObjectWithTag("Diamant2").SetActive(false);
             ScoreManager.instance.ChangeScore(diamantValue);
-
+            diamantValue++;
         }
 
         if (other.gameObject.CompareTag("Diamant3"))
@@ -247,7 +267,7 @@ public class movement : MonoBehaviour
 
             GameObject.FindGameObjectWithTag("Diamant3").SetActive(false);
             ScoreManager.instance.ChangeScore(diamantValue);
-
+            diamantValue++;
         }
 
         if (other.gameObject.CompareTag("Diamant4"))
@@ -255,7 +275,7 @@ public class movement : MonoBehaviour
 
             GameObject.FindGameObjectWithTag("Diamant4").SetActive(false);
             ScoreManager.instance.ChangeScore(diamantValue);
-
+            diamantValue++;
         }
 
 
@@ -273,7 +293,26 @@ public class movement : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Finish") && diamantValue <= 2)
+        {
+            makeEnable1();
 
+            if (Input.GetKeyDown("w"))
+            {
+
+                transform.position = new Vector3(-10, 2, 0);
+                makeDisable1();
+            }
+        }
+
+        else if(diamantValue > 2 && other.gameObject.CompareTag("Finish"))
+        {
+            print("genug Diamonds");
+        }
+
+    }
 
 
 

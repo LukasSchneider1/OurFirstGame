@@ -21,7 +21,8 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     public void ChangeScore(int diamantValue)
     {
-        score += diamantValue;
+        score++;
+        diamantValue = score;
         text.text = score.ToString();
     }
 }
