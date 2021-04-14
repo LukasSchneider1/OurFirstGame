@@ -301,7 +301,7 @@ public class movement : MonoBehaviour
 
         else if (diamantValue > 2 && other.gameObject.CompareTag("FinishSecondLevel"))
         {
-            print("geschaft");
+            Application.LoadLevel("menü");
         }
 
         if (other.gameObject.CompareTag("FinishSecondLevel") && diamantValue <= 2)
@@ -359,28 +359,28 @@ public class movement : MonoBehaviour
         //Diamant
         if (other.gameObject.CompareTag("Diamant"))
         {
-            print("hit");
+            
             GameObject.FindGameObjectWithTag("Diamant").SetActive(false);
             ScoreManager.instance.ChangeScore(diamantValue);
             diamantValue++;
         }
         if (other.gameObject.CompareTag("Diamant2"))
         {
-            print("hit");
+           
             GameObject.FindGameObjectWithTag("Diamant2").SetActive(false);
             ScoreManager.instance.ChangeScore(diamantValue);
             diamantValue++;
         }
         if (other.gameObject.CompareTag("Diamant3"))
         {
-            print("hit");
+           
             GameObject.FindGameObjectWithTag("Diamant3").SetActive(false);
             ScoreManager.instance.ChangeScore(diamantValue);
             diamantValue++;
         }
         if (other.gameObject.CompareTag("Diamant4"))
         {
-            print("hit");
+          
             GameObject.FindGameObjectWithTag("Diamant4").SetActive(false);
             ScoreManager.instance.ChangeScore(diamantValue);
             diamantValue++;
