@@ -58,6 +58,7 @@ public class movement : MonoBehaviour
 
     private void Update()
     {
+        Ende();
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
@@ -412,8 +413,21 @@ public class movement : MonoBehaviour
             }
 
         }
+
+        
     }
 
+    private void Ende()
+    {
+        if(Input.GetButton("Cancel"))
+        {
+            print("esc");
+            Application.LoadLevel("Menü");
+
+
+
+        }
+    }
 
 
     }
