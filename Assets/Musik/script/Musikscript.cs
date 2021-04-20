@@ -7,7 +7,7 @@ public class Musikscript : MonoBehaviour
 {
     public AudioSource Audiosource;
     public Slider volumeSlider;
-    private float musicVolume = 1f;
+    public float musicVolume = 1f;
    
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class Musikscript : MonoBehaviour
     {
         Audiosource.volume = musicVolume;
         PlayerPrefs.SetFloat("volume", musicVolume);
-         
+        
     }
 
     public void updateVolume(float volume)

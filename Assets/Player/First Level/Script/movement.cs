@@ -25,20 +25,26 @@ public class movement : MonoBehaviour
     bool jump = false;
 
     public Animator animator;
+    public AudioSource backgroundmusik;
     public AudioSource footstep;
-    public AudioSource jumpsound;
+   
+  
 
     private static int herz = 4;
     private static int zähler;
     Cmovement My_Cmovement = new Cmovement(herz, zähler);
 
-    public int diamantValue = 0;
+    private int diamantValue = 0;
+   
+    
 
     public GameObject canvasObject;
     public GameObject canvasObject1;
+  
 
     private void Start()
     {
+        
         makeDisable1();
         _rigidbody = GetComponent<Rigidbody2D>();
         //GameObject.FindGameObjectWithTag("moreDiamants").SetActive(false);
@@ -49,16 +55,23 @@ public class movement : MonoBehaviour
             //GameObject.FindGameObjectWithTag("Herz" + (My_Cmovement.iherz-My_Cmovement.izähler)).SetActive(false);
             break;
         }
+
         if (herz == 2)
         {
             GameObject.FindGameObjectWithTag("Herz3").SetActive(false);
         }
-
+        
     }
 
     private void Update()
     {
-        Ende();
+
+       
+      
+
+        backgroundmusik.volume = PlayerPrefs.GetFloat("volume");
+        
+        //Ende();
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
@@ -95,10 +108,7 @@ public class movement : MonoBehaviour
     {
         footstep.Play();
     }
-    private void Jump()
-    {
-        jumpsound.Play();
-    }
+    
     public void makeDisable1()
     {
         canvasObject1.SetActive(false);
@@ -251,7 +261,7 @@ public class movement : MonoBehaviour
         //Abfrage ob er noch ein leben hat
         if (herz == 1)
         {
-            Application.LoadLevel("Menü");
+            SceneManager.LoadScene("Menü");
 
             herz = 4;
             zähler = 0;
@@ -288,7 +298,15 @@ public class movement : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Finish") && diamantValue <= 2)
+        if (diamantValue == 3 && other.gameObject.CompareTag("Finish"))
+        {
+            SceneManager.LoadScene("SecondLevel");
+            herz = 4;
+            zähler = 0;
+            Cmovement My_Cmovement = new Cmovement(herz, zähler);
+        }
+
+       else if (other.gameObject.CompareTag("Finish") && diamantValue <= 2)
         {
             makeEnable1();
 
@@ -300,12 +318,18 @@ public class movement : MonoBehaviour
             }
         }
 
-        else if (diamantValue > 2 && other.gameObject.CompareTag("FinishSecondLevel"))
+        
+
+        if (diamantValue > 2 && other.gameObject.CompareTag("FinishSecondLevel"))
         {
-            Application.LoadLevel("menü");
+
+            SceneManager.LoadScene("menü");
+            herz = 4;
+            zähler = 0;
+            Cmovement My_Cmovement = new Cmovement(herz, zähler);
         }
 
-        if (other.gameObject.CompareTag("FinishSecondLevel") && diamantValue <= 2)
+      else if (other.gameObject.CompareTag("FinishSecondLevel") && diamantValue <= 2)
         {
             makeEnable1();
 
@@ -317,10 +341,7 @@ public class movement : MonoBehaviour
             }
         }
 
-        else if (diamantValue > 2 && other.gameObject.CompareTag("Finish"))
-        {
-            Application.LoadLevel("SecondLevel");
-        }
+       
 
         if (other.gameObject.CompareTag("signrun"))
         {
@@ -344,7 +365,7 @@ public class movement : MonoBehaviour
 
             if (herz == 1)
             {
-                Application.LoadLevel("Menü");
+                SceneManager.LoadScene("Menü");
 
                 herz = 4;
                 zähler = 0;
@@ -403,7 +424,7 @@ public class movement : MonoBehaviour
 
             if (herz == 1)
             {
-                Application.LoadLevel("Menü");
+                SceneManager.LoadScene("Menü");
 
                 herz = 4;
                 zähler = 0;
@@ -417,17 +438,7 @@ public class movement : MonoBehaviour
         
     }
 
-    private void Ende()
-    {
-        if(Input.GetButton("Cancel"))
-        {
-            print("esc");
-            Application.LoadLevel("Menü");
-
-
-
-        }
-    }
+   
 
 
     }

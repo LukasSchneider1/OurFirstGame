@@ -36,6 +36,9 @@ TagManager:
   - Endgegner
   - bullethit
   - FinishSecondLevel
+  - haupt
+  - escape
+  - Ladder
   layers:
   - Default
   - TransparentFX
