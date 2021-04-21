@@ -13,7 +13,7 @@ public class Platform : MonoBehaviour
     void Start()
     {
         nextPos = startPos.position;
-        
+
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class Platform : MonoBehaviour
         {
             nextPos = pos1.position;
         }
-      
+
 
         transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
     }

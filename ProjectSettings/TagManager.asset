@@ -28,6 +28,17 @@ TagManager:
   - Pos2
   - door
   - moreDiamants
+  - sign
+  - Tilemap
+  - "TilemapKopf\xFCber"
+  - Block
+  - signrun
+  - Endgegner
+  - bullethit
+  - FinishSecondLevel
+  - haupt
+  - escape
+  - Ladder
   layers:
   - Default
   - TransparentFX
