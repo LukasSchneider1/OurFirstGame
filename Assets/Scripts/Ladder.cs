@@ -29,7 +29,12 @@ public class Ladder : MonoBehaviour
         {
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
         }
-       
+
+        //else if (other.tag == "Player" && Input.GetKey("a"))
+        //{
+        //    other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
+        //}
+
         else
         {
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
