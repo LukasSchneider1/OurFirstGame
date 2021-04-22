@@ -39,12 +39,11 @@ public class movement : MonoBehaviour
     
 
     public GameObject canvasObject;
-    public GameObject canvasObject1;
+    public GameObject canvasObject1;    
   
 
     private void Start()
-    {
-        
+    {       
         makeDisable1();
         _rigidbody = GetComponent<Rigidbody2D>();
         //GameObject.FindGameObjectWithTag("moreDiamants").SetActive(false);
@@ -64,10 +63,7 @@ public class movement : MonoBehaviour
     }
 
     private void Update()
-    {
-
-       
-      
+    {        
 
         backgroundmusik.volume = PlayerPrefs.GetFloat("volume");
         
@@ -79,14 +75,11 @@ public class movement : MonoBehaviour
         {
             animator.SetBool("IsJumping", true);
             jump = true;
-
-
-
         }
 
         if (Input.anyKey || herz < 4)
         {
-            makeDisable();
+            makeDisable();            
         }
     }
 
