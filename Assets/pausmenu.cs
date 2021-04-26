@@ -10,7 +10,10 @@ public class pausmenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pausmenuUI;
 
-   
+    private void Start()
+    {
+        pausmenuUI.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
