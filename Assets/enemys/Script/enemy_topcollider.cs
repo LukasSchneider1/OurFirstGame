@@ -7,7 +7,10 @@ public class enemy_topcollider : MonoBehaviour
     public Transform pos1, pos2;
     public float speed;
     public Transform startPos;
+ 
    
+
+
 
     Vector3 nextPos;
     // Start is called before the first frame update
@@ -33,13 +36,13 @@ public class enemy_topcollider : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
     }
-
+   
     private void OndrawGizmos()
     {
         Gizmos.DrawLine(pos1.position, pos2.position);
     }
 
-  
+   
 
 
 }

@@ -20,7 +20,7 @@ public class Ladder : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        
+
         if (other.tag == "Player" && Input.GetKey("w"))
         {
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
@@ -29,21 +29,40 @@ public class Ladder : MonoBehaviour
         {
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
         }
-        else if (other.tag == "Player" && Input.GetKeyDown("a"))
+
+        else if (other.tag == "Player" && Input.GetKey("a"))
         {
+
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(-7, 0);
         }
+
 
         else if (other.tag == "Player" && Input.GetKey("d"))
         {
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(7, 0);
         }
+
+
         else
         {
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             other.GetComponent<Rigidbody2D>().gravityScale = 0;
         }
 
+
+        if (other.tag == "Player" && Input.GetKey("a") && Input.GetKey("s"))
+        {
+
+
+            other.GetComponent<Rigidbody2D>().velocity = new Vector2(-7, -speed);
+        }
+
+
+        if (other.tag == "Player" && Input.GetKey("d") && Input.GetKey("s"))
+        {
+
+            other.GetComponent<Rigidbody2D>().velocity = new Vector2(7, -speed);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

@@ -7,6 +7,7 @@ public class enemy_movement : MonoBehaviour
     public Transform pos1, pos2;
     public float speed;
     public Transform startPos;
+   
     
 
     Vector3 nextPos;
@@ -43,5 +44,5 @@ public class enemy_movement : MonoBehaviour
         Gizmos.DrawLine(pos1.position, pos2.position);
     }
 
-    
+   
 }
