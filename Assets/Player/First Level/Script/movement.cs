@@ -213,6 +213,24 @@ public class movement : MonoBehaviour
 
 
         }
+
+        if (other.gameObject.CompareTag("wand1") || other.gameObject.CompareTag("wand2"))
+        {
+            herz = 4;
+
+            if (herz > 0)
+            {
+
+                zähler = zähler + 1;
+                herz = herz - zähler;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Cmovement My_Cmovement = new Cmovement(herz, zähler);
+
+            }
+
+
+
+        }
         //Spiken1-2
         if (other.gameObject.CompareTag("Spike1") || other.gameObject.CompareTag("Spike2") || other.gameObject.CompareTag("Spike3") || other.gameObject.CompareTag("Spike4") || other.gameObject.CompareTag("Spike5"))
         {
@@ -338,6 +356,7 @@ public class movement : MonoBehaviour
 
         if (other.gameObject.CompareTag("signrun"))
         {
+            _rigidbody.gravityScale = 1;
             _endgegner.Update();
             _endgegner.gegnerstart = true;
            
@@ -428,7 +447,31 @@ public class movement : MonoBehaviour
 
         }
 
-        
+        if (other.gameObject.CompareTag("gravitationänderung"))
+        {
+            _rigidbody.gravityScale = 3;
+        }
+
+
+        if (diamantValue == 3 && other.gameObject.CompareTag("door"))
+        {
+            SceneManager.LoadScene("menü");
+            herz = 4;
+            zähler = 0;
+            Cmovement My_Cmovement = new Cmovement(herz, zähler);
+        }
+
+        else if (other.gameObject.CompareTag("door") && diamantValue <= 2)
+        {
+            makeEnable1();
+
+            if (Input.GetKeyDown("w"))
+            {
+
+                transform.position = new Vector3(-3, -1, 0);
+                makeDisable1();
+            }
+        }
     }
 
    
