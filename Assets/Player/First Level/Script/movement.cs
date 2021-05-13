@@ -20,15 +20,16 @@ public class movement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     public CharacterController2D controller;
 
-    public float runSpeed = 40f;
+    public float runSpeed = 30;
     float horizontalMove = 0f;
     bool jump = false;
 
     public Animator animator;
     public AudioSource backgroundmusik;
     public AudioSource footstep;
-   
-  
+
+    public PowerUp _powerUP;
+    public invisible invisible;
 
     private static int herz = 4;
     private static int zähler;
@@ -80,6 +81,33 @@ public class movement : MonoBehaviour
         if (Input.anyKey || herz < 4)
         {
             makeDisable();            
+        }
+
+        if (_powerUP.powerup)
+        {
+            if(_powerUP.timeRemaining > 0)
+            {
+                _powerUP.timeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                runSpeed = 30;
+                _powerUP.powerup = false;
+            }
+        }
+
+        if (invisible.visible)
+        {
+            if (invisible.timeRemaining > 0)
+            {
+                invisible.timeRemaining -= Time.deltaTime;
+            }
+            else
+            {                
+                invisible.visible = false;
+                invisible.renderer.enabled = true;
+                
+            }
         }
     }
 
