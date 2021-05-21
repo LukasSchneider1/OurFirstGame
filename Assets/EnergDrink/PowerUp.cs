@@ -9,6 +9,7 @@ public class PowerUp : MonoBehaviour
     public movement _movement;
     public bool powerup = false;
 
+    //counter
     public float timeRemaining = 5;
     void Start()
     {
@@ -23,29 +24,16 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //abfrage ob der Spieler das gameobjekt aufsammelt. nach 5 sekunden wird die geschwindigkeit wieder normal
         if (other.gameObject.CompareTag("Player"))
         {
+            //erhöhte geschwindigkeit
             _movement.runSpeed = 50;
             gameObject.SetActive(false);
             powerup = true;
         }
     }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    //for (float i = 0; i < timeRemaining; i += Time.deltaTime) { 
-
-    //    //    if (i == timeRemaining)
-    //    //    {
-    //    //        _movement.runSpeed = 1;
-                
-    //    //    }
-    //    //    Debug.Log("RAN OUT!");
-    //    //}
-
-    //    //Debug.Log("TIME RAN OUT!");
-
-        
-    //}
+   
     
 }

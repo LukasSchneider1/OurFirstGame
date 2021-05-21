@@ -6,6 +6,7 @@ public class endgegnerscript : MonoBehaviour
 {
     public bool run;
     public SpriteRenderer _spriterenderer;
+    //verlinkung zum Movementscript
     public movement _movement;
     public Transform pos1, pos2;
     private float speed = 5;
@@ -36,6 +37,7 @@ public class endgegnerscript : MonoBehaviour
         if (transform.position == pos2.position)
         {
             nextPos = pos1.position;
+            //spiegelt den gegner
             _spriterenderer.flipX = false;
 
         }

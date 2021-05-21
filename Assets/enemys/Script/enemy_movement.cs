@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class enemy_movement : MonoBehaviour
 {
+    //positionen wo sich der gegner hin bewegen soll
     public Transform pos1, pos2;
+    //geschwindigkeit
     public float speed;
+    //startposition
     public Transform startPos;
    
     

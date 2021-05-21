@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 375924af2f78ef24699e35c7922b8592,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1387,13 +1387,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384795253ee2a1e48b0489c6c8fd7215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  run: 0
   _endgegner: {fileID: 39394885}
+  run: 0
   controller: {fileID: 170931504}
   runSpeed: 30
   animator: {fileID: 170931499}
   backgroundmusik: {fileID: 171356953}
   footstep: {fileID: 170931501}
+  _powerUP: {fileID: 0}
+  invisible: {fileID: 0}
   canvasObject: {fileID: 1411992476}
   canvasObject1: {fileID: 2096763506}
 --- !u!82 &170931501
@@ -3791,7 +3793,7 @@ GameObject:
   - component: {fileID: 673747949}
   - component: {fileID: 673747948}
   m_Layer: 5
-  m_Name: 'Gravitydecrease '
+  m_Name: 'Gravityincrease '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11811,7 +11813,7 @@ GameObject:
   - component: {fileID: 1512975336}
   - component: {fileID: 1512975335}
   m_Layer: 5
-  m_Name: Gravityincrease
+  m_Name: Gravitydecrease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15024,7 +15026,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: INCREASED GRAVITY
+  m_text: DECREASED GRAVITY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -13,28 +13,43 @@ public class movement : MonoBehaviour
     //Geschwindigkeit
 
     // Start is called before the first frame update
-
+    public endgegnerscript _endgegner;
     //Sprung
     public bool run = false;
-    public endgegnerscript _endgegner;
+    //Verlinkung zum Rigidbody
     private Rigidbody2D _rigidbody;
+    //CharacterController verlinkung
     public CharacterController2D controller;
 
+    //beweg geschwindigkeit
     public float runSpeed = 30;
+    //horizontale bewegung
     float horizontalMove = 0f;
+    //Jump true oder false
     bool jump = false;
 
+    //Animator verlinkung
     public Animator animator;
+    //Audiosource hintergrundmusik
     public AudioSource backgroundmusik;
+    //footstep sound
     public AudioSource footstep;
 
+    //PowerUp: schnellere geschwindigkeit
     public PowerUp _powerUP;
+    //unsichbar 
     public invisible invisible;
-
+    
+    //gesamt Leben
     private static int herz = 4;
+
+    //Die variable mit der das Herz abgezogen wird. Bei zwei Tode ist die Variable auf 2. Das Herz wird minus 2 subtrahiert 
     private static int zähler;
+
+    //Konstruktur
     Cmovement My_Cmovement = new Cmovement(herz, zähler);
 
+    //Variable für die Diamanten
     private int diamantValue = 0;
    
     
@@ -47,15 +62,14 @@ public class movement : MonoBehaviour
     {       
         makeDisable1();
         _rigidbody = GetComponent<Rigidbody2D>();
-        //GameObject.FindGameObjectWithTag("moreDiamants").SetActive(false);
-
+        //setzt ein Herz auf false sobald der Spieler ein Leben verliert
         for (int i = herz; herz > 0; i--)
         {
             GameObject.FindGameObjectWithTag("Herz" + i).SetActive(false);
-            //GameObject.FindGameObjectWithTag("Herz" + (My_Cmovement.iherz-My_Cmovement.izähler)).SetActive(false);
             break;
         }
 
+        //Wenn der Spieler 2 Herzen hat wird das 3 Herz deaktiviert
         if (herz == 2)
         {
             GameObject.FindGameObjectWithTag("Herz3").SetActive(false);
@@ -66,18 +80,24 @@ public class movement : MonoBehaviour
     private void Update()
     {        
 
+        //holt sich die musiklautstärke aus dem String "volume"
         backgroundmusik.volume = PlayerPrefs.GetFloat("volume");
         
-        //Ende();
+        //Spieler bewegt sich horizontal
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        //Animation wenn der Spieler sich bewegt
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
+
+        //abfrage ob er die leertaste drückt
         if (Input.GetButtonDown("Jump"))
         {
+            //setzt die animation auf true
             animator.SetBool("IsJumping", true);
             jump = true;
         }
 
+        //Der anfangstext wird ausgeblendet wenn der Spieler eine taste drückt
         if (Input.anyKey || herz < 4)
         {
             makeDisable();            
@@ -111,14 +131,16 @@ public class movement : MonoBehaviour
         }
     }
 
+    //Wenn die Figur den Boden berührt wird diese Funktion ausgeführt
     public void OnLanding()
     {
+        //setzt die Jumpanimation auf false
         animator.SetBool("IsJumping", false);
     }
     // Update is called once per frame
     private void FixedUpdate()
     {
-
+        //Der Spieler bewegt sich
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         jump = false;
 
@@ -130,17 +152,18 @@ public class movement : MonoBehaviour
         footstep.Play();
     }
     
+    //setzt den ersten Text auf false
     public void makeDisable1()
     {
         canvasObject1.SetActive(false);
     }
-
+    //setzt den Text auf false
     public void makeDisable()
     {
         canvasObject.SetActive(false);
 
     }
-
+    //setzt den Text auf false
     public void makeEnable1()
     {
         canvasObject1.SetActive(true);
@@ -149,7 +172,8 @@ public class movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //Platform selber x-Wert
+        
+        //abfrage ob der Spieler das Gameobjekt mit dem Tag "Platform" berührt
         if (other.gameObject.CompareTag("Platform"))
         {
             this.transform.parent = other.transform;
@@ -164,6 +188,7 @@ public class movement : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("BulletLeft"));
         }
         //Player bekommt vom ersten Gegner schaden
+        //Spieler bekommt Herzen abgezogen
         if (other.gameObject.CompareTag("Enemy_schaden"))
         {
             herz = 4;
@@ -173,13 +198,12 @@ public class movement : MonoBehaviour
 
                 zähler = zähler + 1;
                 herz = herz - zähler;
+                //Scene wird neu geladen
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                //die Variablen werden in den Konstruktor hinzugefügt
                 Cmovement My_Cmovement = new Cmovement(herz, zähler);
 
             }
-
-
-
         }
 
        
@@ -195,6 +219,7 @@ public class movement : MonoBehaviour
 
         }
         //Player bekommt vom ersten Gegner1 schaden
+        //Spieler bekommt Herzen abgezogen
         if (other.gameObject.CompareTag("Enemy_schaden1"))
         {
 
@@ -210,6 +235,8 @@ public class movement : MonoBehaviour
             }
 
         }
+        //Spieler fällt von der Map runter
+        //Spieler bekommt Herzen abgezogen
         if (other.gameObject.CompareTag("Falldown"))
         {
             herz = 4;
@@ -241,7 +268,7 @@ public class movement : MonoBehaviour
 
 
         }
-
+        //Spieler bekommt Herzen abgezogen
         if (other.gameObject.CompareTag("wand1") || other.gameObject.CompareTag("wand2"))
         {
             herz = 4;
@@ -259,7 +286,8 @@ public class movement : MonoBehaviour
 
 
         }
-        //Spiken1-2
+        //Spiken1-5
+        //Spieler bekommt Herzen abgezogen
         if (other.gameObject.CompareTag("Spike1") || other.gameObject.CompareTag("Spike2") || other.gameObject.CompareTag("Spike3") || other.gameObject.CompareTag("Spike4") || other.gameObject.CompareTag("Spike5"))
         {
             herz = 4;
@@ -278,7 +306,7 @@ public class movement : MonoBehaviour
 
         }
 
-
+        //Spieler bekommt Herzen abgezogen
         if (other.gameObject.CompareTag("Block"))
         {
             herz = 4;
@@ -308,18 +336,14 @@ public class movement : MonoBehaviour
 
 
         }
-
+        
         if (other.gameObject.CompareTag("door"))
         {
 
             GameObject.FindGameObjectWithTag("moreDiamants").SetActive(true);
-            print("zuwenig");
+            
 
         }
-
-       
-
-
 
     }
    
@@ -337,6 +361,7 @@ public class movement : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        //Wenn der Spieler 3 Diamanten hat und beim Ziel ist wird die nächste Scene geladen
         if (diamantValue == 3 && other.gameObject.CompareTag("Finish"))
         {
             SceneManager.LoadScene("SecondLevel");
@@ -344,21 +369,21 @@ public class movement : MonoBehaviour
             zähler = 0;
             Cmovement My_Cmovement = new Cmovement(herz, zähler);
         }
-
+        //Wenn der Spieler keine 3 Diamanten hat und beim Ziel ist, wird er zurück zum Start gesetzt
        else if (other.gameObject.CompareTag("Finish") && diamantValue <= 2)
         {
             makeEnable1();
-
+            //muss die Taste "w" drücken um zurückgesetzt zu werden
             if (Input.GetKeyDown("w"))
             {
-
+                //Werte des Startpunkts
                 transform.position = new Vector3(-10, 2, 0);
                 makeDisable1();
             }
         }
 
         
-
+        //Wenn der Spieler mehr als 2 Diamanten hat und im 2 Level im Ziel ist, erscheint das Menü
         if (diamantValue > 2 && other.gameObject.CompareTag("FinishSecondLevel"))
         {
 
@@ -367,8 +392,8 @@ public class movement : MonoBehaviour
             zähler = 0;
             Cmovement My_Cmovement = new Cmovement(herz, zähler);
         }
-
-      else if (other.gameObject.CompareTag("FinishSecondLevel") && diamantValue <= 2)
+        //Wenn der Spieler weniger als 2 Diamanten hat und im 2 Level im Ziel ist, wird er zum Startpunkt transportiert
+        else if (other.gameObject.CompareTag("FinishSecondLevel") && diamantValue <= 2)
         {
             makeEnable1();
 
@@ -381,18 +406,21 @@ public class movement : MonoBehaviour
         }
 
        
-
+        //Abfrage ob er das Schild berührt
         if (other.gameObject.CompareTag("signrun"))
         {
+            //Gravitation wird auf 1 gesetzt
             _rigidbody.gravityScale = 1;
+            //Der Endgegner startet
             _endgegner.Update();
             _endgegner.gegnerstart = true;
            
         }
+        //Prüfen ob die Bullets den Player treffen
         if (other.gameObject.CompareTag("Bullet"))
         {
             herz = 4;
-
+            //Abfrage ob er noch Leben hat
             if (herz > 0)
             {
 
@@ -402,7 +430,7 @@ public class movement : MonoBehaviour
                 Cmovement My_Cmovement = new Cmovement(herz, zähler);
 
             }
-
+            //Abfrage ob er kein Leben mehr hat
             if (herz == 1)
             {
                 SceneManager.LoadScene("Menü");
@@ -418,7 +446,7 @@ public class movement : MonoBehaviour
         }
 
 
-        //Diamant
+        //Diamant werden deaktiviert und der diamantenCounter wird erhöht
         if (other.gameObject.CompareTag("Diamant"))
         {
             
@@ -447,7 +475,7 @@ public class movement : MonoBehaviour
             ScoreManager.instance.ChangeScore(diamantValue);
             diamantValue++;
         }
-
+        //Abfrage ob der Endgegner den Spieler berührt --> Leben abzug
         if (other.gameObject.CompareTag("Endgegner"))
         {
             herz = 4;
@@ -461,7 +489,7 @@ public class movement : MonoBehaviour
                 Cmovement My_Cmovement = new Cmovement(herz, zähler);
 
             }
-
+            //abfrage ob er kein Leben mehr hat
             if (herz == 1)
             {
                 SceneManager.LoadScene("Menü");
@@ -475,12 +503,13 @@ public class movement : MonoBehaviour
 
         }
 
+        //Gravitation wird geändert
         if (other.gameObject.CompareTag("gravitationänderung"))
         {
             _rigidbody.gravityScale = 3;
         }
 
-
+        //Wenn er 3 diamanten hat und beim Ziel ist erscheint das Menü
         if (diamantValue == 3 && other.gameObject.CompareTag("door"))
         {
             SceneManager.LoadScene("menü");
@@ -488,7 +517,7 @@ public class movement : MonoBehaviour
             zähler = 0;
             Cmovement My_Cmovement = new Cmovement(herz, zähler);
         }
-
+        //Wenn der Spieler weniger als 2 Diamanten hat, wird er zum Startpunkt transportiert
         else if (other.gameObject.CompareTag("door") && diamantValue <= 2)
         {
             makeEnable1();
@@ -502,10 +531,9 @@ public class movement : MonoBehaviour
         }
     }
 
-   
-
-
     }
+
+//Konstruktor
 [SerializeField()]
 public class Cmovement
 {
