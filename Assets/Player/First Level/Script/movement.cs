@@ -41,10 +41,10 @@ public class movement : MonoBehaviour
     public invisible invisible;
     
     //gesamt Leben
-    private static int herz = 4;
+    public static int herz = 4;
 
     //Die variable mit der das Herz abgezogen wird. Bei zwei Tode ist die Variable auf 2. Das Herz wird minus 2 subtrahiert 
-    private static int zähler;
+    public static int zähler;
 
     //Konstruktur
     Cmovement My_Cmovement = new Cmovement(herz, zähler);
@@ -321,7 +321,7 @@ public class movement : MonoBehaviour
 
             }
         }
-
+      
 
        
 

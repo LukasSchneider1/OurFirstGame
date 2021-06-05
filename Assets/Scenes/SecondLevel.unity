@@ -7955,7 +7955,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 18.533794, y: -0.47128946}
+  m_Offset: {x: 18.533794, y: -0.51311785}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7966,7 +7966,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0458374, y: 1.0618836}
+  m_Size: {x: 1.0458374, y: 0.9782268}
   m_EdgeRadius: 0
 --- !u!61 &705851650
 BoxCollider2D:
@@ -8166,7 +8166,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 33.061085, y: -0.5274911}
+  m_Offset: {x: 33.061085, y: -0.5399127}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8177,7 +8177,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.94825, y: 1.1682768}
+  m_Size: {x: 5.94825, y: 1.1434336}
   m_EdgeRadius: 0
 --- !u!61 &705851658
 BoxCollider2D:
@@ -8497,7 +8497,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 138.44397, y: -1.4826251}
+  m_Offset: {x: 138.492, y: -1.5493109}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8508,7 +8508,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.3322906, y: 1.2562039}
+  m_Size: {x: 6.9800415, y: 1.1228323}
   m_EdgeRadius: 0
 --- !u!61 &705851671
 BoxCollider2D:
@@ -8523,7 +8523,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 241.42033, y: 0.6207354}
+  m_Offset: {x: 241.50356, y: 0.526201}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8534,7 +8534,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 31.159332, y: 1.1214414}
+  m_Size: {x: 30.99289, y: 0.9323725}
   m_EdgeRadius: 0
 --- !u!68 &705851672
 EdgeCollider2D:

@@ -8,6 +8,12 @@ public class PauseMenu : MonoBehaviour
 
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public movement _movement;
+    //gesamt Leben
+    public static int herz = 4;
+
+    //Die variable mit der das Herz abgezogen wird. Bei zwei Tode ist die Variable auf 2. Das Herz wird minus 2 subtrahiert 
+    public static int zähler;
     private void Start()
     {
         pauseMenuUI.SetActive(false);
@@ -46,10 +52,9 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
-        Debug.Log("LOADING");
+        Resume();
         SceneManager.LoadScene("Menü");
-
+        
     }
 
     public void QuitGame()
