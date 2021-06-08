@@ -39,6 +39,9 @@ TagManager:
   - haupt
   - escape
   - Ladder
+  - wand1
+  - wand2
+  - "gravitation\xE4nderung"
   layers:
   - Default
   - TransparentFX

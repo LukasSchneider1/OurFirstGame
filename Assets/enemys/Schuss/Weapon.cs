@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
     }
     private void Test()
     {
+        //timer
         StartCoroutine(Timer());
     }
 
@@ -22,6 +23,7 @@ public class Weapon : MonoBehaviour
   
     IEnumerator Timer()
     {
+        //jede 1,5 sekunden schießt der gegner
         yield return new WaitForSeconds((float)1.5);
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
        

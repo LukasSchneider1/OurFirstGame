@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class blockscript : MonoBehaviour
 {
+    //Zu diesen Punkten bewegt sich das Objekt hin
     public Transform pos1, pos2;
     public float speed;
     public Transform startPos;
@@ -19,7 +20,7 @@ public class blockscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Wenn es an der Position1 angekommen ist, bewegt es sich zum Punkt 2
         if (transform.position == pos1.position)
         {
             nextPos = pos2.position;
